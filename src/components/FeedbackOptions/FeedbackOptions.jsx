@@ -9,9 +9,7 @@ function firstСapital(str) {
   return str[0].toUpperCase() + str.slice(1);
 }
 
-const FeedbackOptions = props => {
-  const { options, onLeaveFeedback } = props;
-
+const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <div className={s.btnWrap}>
       {options.map(name => {

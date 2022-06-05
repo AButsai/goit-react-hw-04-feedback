@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import s from './Notification.module.css';
 
-const Notification = props => {
-  const { message } = props;
+const Notification = ({ message }) => {
   return <span className={s.title}>{message}</span>;
 };
 
