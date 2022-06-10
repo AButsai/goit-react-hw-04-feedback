@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Section } from './Section';
-import { Statistics } from './Statistics';
-import { FeedbackOptions } from './FeedbackOptions';
-import Notification from './Notification';
+import { Section } from '../Section';
+import { Statistics } from '../Statistics';
+import { FeedbackOptions } from '../FeedbackOptions';
+import Notification from '../Notification';
+
+const options = ['good', 'neutral', 'bad'];
 
 export function App() {
   const [good, setGood] = useState(0);
@@ -43,7 +45,7 @@ export function App() {
     <div>
       <Section title="Please leave feedback">
         <FeedbackOptions
-          options={['good', 'neutral', 'bad']}
+          options={options}
           onLeaveFeedback={handleCountFeedback}
         />
         {total === 0 ? (
