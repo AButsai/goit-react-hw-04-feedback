@@ -4,25 +4,21 @@ import { Statistics } from '../Statistics';
 import { FeedbackOptions } from '../FeedbackOptions';
 import Notification from '../Notification';
 
-const options = ['good', 'neutral', 'bad'];
-
 export function App() {
-  const [good, setGood] = useState(0);
-  const [neutral, setNeutral] = useState(0);
-  const [bad, setBad] = useState(0);
+  const [state, setState] = useState({ good: 0, neutral: 0, bad: 0 });
 
   const handleCountFeedback = name => {
     switch (name) {
       case 'good':
-        setGood(good + 1);
+        setState({ ...state, good: state.good + 1 });
         break;
 
       case 'neutral':
-        setNeutral(neutral + 1);
+        setState({ ...state, neutral: state.neutral + 1 });
         break;
 
       case 'bad':
-        setBad(bad + 1);
+        setState({ ...state, bad: state.bad + 1 });
         break;
 
       default:
@@ -31,15 +27,17 @@ export function App() {
   };
 
   const countTotalFeedback = () => {
-    return good + neutral + bad;
+    return Object.values(state).reduce((acc, value) => acc + value, 0);
   };
 
   const countPositiveFeedbackPercentage = () => {
-    return ((100 / countTotalFeedback()) * good).toFixed();
+    return ((100 / countTotalFeedback()) * state.good).toFixed();
   };
 
   const total = countTotalFeedback();
   const positiveFeedbackPercentage = countPositiveFeedbackPercentage();
+  const options = Object.keys(state);
+  const { good, neutral, bad } = state;
 
   return (
     <div>
